@@ -1,25 +1,18 @@
 const botoes = document.querySelectorAll("button");
-const estadoBotoes = new Map();
 
-botoes.forEach(botao => {
+botoes.forEach(function (botao) {
     botao.addEventListener("click", function () {
-        console.log("Botão clicado");
+        console.log("Fui clicado");
+        
+        let texto = this.querySelector("span");
+        let numero = Number(texto.textContent);
 
-        const span = this.querySelector("span");
-        let valorAtual = Number(span.textContent);
-
-        if (!estadoBotoes.has(this)) {
-            estadoBotoes.set(this, false);
-        }
-
-        let jaCurtiu = estadoBotoes.get(this);
-
-        if (jaCurtiu === false) {
-            span.textContent = valorAtual + 1;
-            estadoBotoes.set(this, true);
+        if (this.dataset.curtiu === "true") {
+            texto.textContent = numero - 1;
+            this.dataset.curtiu = "false";
         } else {
-            span.textContent = valorAtual - 1;
-            estadoBotoes.set(this, false);
+            texto.textContent = numero + 1;
+            this.dataset.curtiu = "true";
         }
     });
 });
