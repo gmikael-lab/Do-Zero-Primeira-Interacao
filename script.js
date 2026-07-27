@@ -1,4 +1,4 @@
-const botoes = document.querySelectorAll("button");
+const botoes = document.querySelectorAll(".btn-like");
 
 botoes.forEach(function (botao) {
     let curtiu = false
