@@ -1,18 +1,29 @@
 const botoes = document.querySelectorAll("button");
 
 botoes.forEach(function (botao) {
-    botao.addEventListener("click", function () {
-        console.log("Fui clicado");
-        
-        let texto = this.querySelector("span");
-        let numero = Number(texto.textContent);
-
-        if (this.dataset.curtiu === "true") {
-            texto.textContent = numero - 1;
-            this.dataset.curtiu = "false";
+    let curtiu = false
+    botao.addEventListener("click", botaoClicado)
+    function botaoClicado() {
+        let texto = botao.querySelector("span")
+        if (curtiu === false) {
+            texto.textContent++
+            curtiu = true
         } else {
-            texto.textContent = numero + 1;
-            this.dataset.curtiu = "true";
+            texto.textContent--
+            curtiu = false
         }
-    });
-});
+    }
+})
+
+const btnTemaEscuro = document.querySelector(".btn-tema-escuro")
+
+btnTemaEscuro.addEventListener("click", mudaTema)
+
+function mudaTema() {
+    const corpoPagina = document.body
+    if (corpoPagina.classList.contains("tema-escuro")) {
+        corpoPagina.classList.remove("tema-escuro")
+    } else {
+        corpoPagina.classList.add("tema-escuro")
+    }
+}
